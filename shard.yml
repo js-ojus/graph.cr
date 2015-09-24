@@ -4,7 +4,7 @@ version: 0.1.0
 dependencies:
   sparsebitset:
     github: js-ojus/sparsebitset.cr
-    branch: master
+    version: ">= 0.4.1"
 
 authors:
   - JONNALAGADDA Srinivas <js@ojuslabs.com>

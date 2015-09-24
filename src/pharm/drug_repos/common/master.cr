@@ -12,18 +12,23 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+require "sparsebitset"
+
 module Pharm::DrugRepos::Common
 
+  # Default initial size for masters.
+  INIT_MASTER_SIZE = 256_u64
+
   class Master(T)
+    include Enumerable(T)
+
     # Constructs a master for the given entity type, having the given initial
     # capacity.
-    def initialize(n : Int32)
-      raise ArgumentError.new("given size <= 0") if n <= 0
-
+    def initialize(n = INIT_MASTER_SIZE : UInt64)
       @ary = Array(T).new(n)
       @map = Hash(String, T).new()
 
-      @exclude = SparseBitSet::BitSet.new()
+      @excluded = SparseBitSet::BitSet.new()
     end
 
     # entity nswers the entity type of this master.
@@ -40,7 +45,7 @@ module Pharm::DrugRepos::Common
       raise ArgumentError.new("empty provider_id") if provider_id.empty?
       raise KeyError.new("duplicate provider ID") if @map.has_key?(provider_id)
 
-      id = @ary.size + 1
+      id = (@ary.size + 1).to_u64
       t = T.new(id, name, provider, provider_id)
       @ary << t
       @map[provider_id] = t
@@ -59,12 +64,32 @@ module Pharm::DrugRepos::Common
     end
 
     # [] answers the element with the given ID, if one such exists; `nil`
-    # [] otherwise.
+    # otherwise.
     def [](id : UInt64) : T | Nil
       return nil if id < 1 || id > @ary.size
       return nil if @excluded.test(id)
 
       @ary[id-1]
+    end
+
+    # [] answers the element with the given provider ID, if one such exists;
+    # `nil` otherwise.
+    def [](pid : String) : T | Nil
+      el = @map[pid]?
+      return nil unless el
+      return nil if @excluded.test(el.id)
+
+      el
+    end
+
+    # size answers the number of registered elements in this master.
+    def size : UInt64
+      @ary.size.to_u64 - @excluded.size
+    end
+
+    # each implements the `Enumerable` interface requirement.
+    def each
+      @ary.each { |el| yield el }
     end
   end
 
