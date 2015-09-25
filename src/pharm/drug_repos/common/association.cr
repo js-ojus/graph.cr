@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-module Pharm::DrugRepos::Common
+module Pharm::DrugRepos::Data
 
   # Given two vertices of types `U` and `V`, where `U` != `V`, an instance of
   # `Association` represents an edge connecting them.  The graph is at least

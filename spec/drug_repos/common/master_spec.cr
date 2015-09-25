@@ -1,13 +1,13 @@
 require "../../pharm_spec"
 
-alias Master = Pharm::DrugRepos::Common::Master
-alias Drug = Pharm::DrugRepos::Common::Drug
-alias AdverseEffect = Pharm::DrugRepos::Common::AdverseEffect
+alias Master = Pharm::DrugRepos::Data::Master
+alias Drug = Pharm::DrugRepos::Data::Drug
+alias AdverseEffect = Pharm::DrugRepos::Data::AdverseEffect
 
 describe "new" do
   it "checks entity" do
     m = Master(Drug).new()
-    m.entity.should eq("Pharm::DrugRepos::Common::Drug")
+    m.entity.should eq("Pharm::DrugRepos::Data::Drug")
   end
 
   it "checks size" do
