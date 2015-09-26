@@ -39,17 +39,19 @@ module Pharm::DrugRepos::Data
     # add creates a new instance with the given data, and registers it in this
     # master in the case of no collision.  An internal unique ID is assigned
     # to the instance.
-    def add(name : String, provider : String, provider_id : String) : Master(T)
+    #
+    # This method is idempotent.
+    def add(name : String, provider : String, provider_id : String) : Bool
       raise ArgumentError.new("empty name") if name.empty?
       raise ArgumentError.new("empty provider") if provider.empty?
       raise ArgumentError.new("empty provider_id") if provider_id.empty?
-      raise KeyError.new("duplicate provider ID") if @map.has_key?(provider_id)
+      return false if @map.has_key?(provider_id)
 
       id = (@ary.size + 1).to_u64
       t = T.new(id, name, provider, provider_id)
       @ary << t
       @map[provider_id] = t
-      self
+      true
     end
 
     # exclude marks the element with the given ID to be excluded from

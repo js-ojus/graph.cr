@@ -17,7 +17,7 @@ module Pharm::DrugRepos::Data
   # Given two vertices of types `U` and `V`, where `U` != `V`, an instance of
   # `Association` represents an edge connecting them.  The graph is at least
   # two-mode.
-  class Association(U, V)
+  struct Association(U, V)
     # Creates an association between the two given heterogeneous vertices.
     def initialize(@origin : UInt64, @dest : UInt64, @reference : String)
       raise ArgumentError.new("zero ID") if @origin == 0 || @dest == 0
@@ -55,7 +55,7 @@ module Pharm::DrugRepos::Data
   # InferredAssociation represents a synthetic edge between a pair of
   # heterogeneous vertices.  Those parts of the graph that are formed from
   # input associations, are used to infer these transitive relationships.
-  class InferredAssociation(U, V) < Association(U, V)
+  struct InferredAssociation(U, V) < Association(U, V)
     def initialize(origin : UInt64, dest : UInt64, reference : String,
                    @specificity : Float64, # how specific is this element of `U` to that of `V`
                    @sensitivity : Float64, # how sensitive is this element of `U` to variations in that of `V`
