@@ -14,7 +14,7 @@
 
 require "sparsebitset"
 
-module Pharm::DrugRepos::Data
+module Graph::Data
 
   # Default initial size for masters.
   INIT_MASTER_SIZE = 256_u64

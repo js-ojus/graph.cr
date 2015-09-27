@@ -1,2 +1,2 @@
 require "spec"
-require "../src/pharm"
+require "../src/graph"

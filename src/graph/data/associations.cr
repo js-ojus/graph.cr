@@ -14,7 +14,7 @@
 
 require "sparsebitset"
 
-module Pharm::DrugRepos::Data
+module Graph::Data
 
   # A collection of associations represents an in-memory two-or-higher-mode
   # graph.  Each instance holds a set of many-to-many relationships between

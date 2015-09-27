@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-module Pharm::DrugRepos::Data
+module Graph::Data
 
   # Entity defines the basic data elements that are common to all
   # entities (but not associations.)
