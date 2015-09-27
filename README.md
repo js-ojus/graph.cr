@@ -14,6 +14,8 @@
    limitations under the License.
 -->
 
+[![Build Status](https://travis-ci.org/js-ojus/graph.cr.svg?branch=master)](https://travis-ci.org/js-ojus/graph.cr)
+
 ## graph
 
 A library that provides a few algorithms for analytics involving multi-mode graphs.  Several of the algorithms deal with two-mode projections to address the most common cases.
