@@ -14,9 +14,9 @@
    limitations under the License.
 -->
 
-## pharm
+## graph
 
-A library that addresses a few of the needs of pharmaceutical R&D.
+A library that provides a few algorithms for analytics involving multi-mode graphs.  Several of the algorithms deal with two-mode projections to address the most common cases.
 
 ### Installation
 
@@ -24,25 +24,25 @@ Add this to your application's `shard.yml`:
 
 ```yaml
 dependencies:
-  pharm:
-    github: js-ojus/pharm.cr
+  graph:
+    github: js-ojus/graph.cr
 ```
 
 ### Usage
 
 ```crystal
-require "pharm"
+require "graph"
 ```
 
-**N.B.** `pharm.cr` is in initial stages, and is not yet suitable for use.
+**N.B.** `graph.cr` is in initial stages, and is not yet suitable for use.
 
 ### Development
 
-**N.B.** `pharm.cr` is in initial stages, and no stable API has been published yet.
+**N.B.** `graph.cr` is in initial stages, and no stable API has been published yet.
 
 ### Contributing
 
-1. Fork it ( https://github.com/js-ojus/pharm.cr/fork )
+1. Fork it ( https://github.com/js-ojus/graph.cr/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
