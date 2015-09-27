@@ -12,8 +12,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-require "./drug_repos/**"
+require "./data/**"
 
-module Pharm::DrugRepos
+module Graph::Data
   # TODO Put your code here
 end
