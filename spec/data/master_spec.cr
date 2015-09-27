@@ -1,13 +1,13 @@
-require "../../pharm_spec"
+require "../../graph_spec"
 
-alias Master = Pharm::DrugRepos::Data::Master
-alias Drug = Pharm::DrugRepos::Data::Drug
-alias AdverseEffect = Pharm::DrugRepos::Data::AdverseEffect
+alias Master = Graph::Data::Master
+alias Drug = Graph::Data::Drug
+alias AdverseEffect = Graph::Data::AdverseEffect
 
 describe "new" do
   it "checks entity" do
     m = Master(Drug).new()
-    m.entity.should eq("Pharm::DrugRepos::Data::Drug")
+    m.entity.should eq("Graph::Data::Drug")
   end
 
   it "checks size" do

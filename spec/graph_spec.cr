@@ -1,6 +1,6 @@
 require "./spec_helper"
 
-describe Pharm do
+describe Graph do
   # TODO: Write tests
 
 end
