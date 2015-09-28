@@ -146,4 +146,16 @@ describe "iteration" do
     end
     ary.size.should eq(3)
   end
+
+  it "checks iteration" do
+    as = Associations(Disease, Pathway).new()
+    as.add(1_u64, 2_u64, "citation-1")
+    as.add(2_u64, 3_u64, "citation-2")
+
+    ary = [] of Association(Disease, Pathway)
+    as.each do |el|
+      ary << el
+    end
+    ary[1].origin.should eq(2_u64)
+  end
 end
