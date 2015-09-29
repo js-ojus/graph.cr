@@ -41,7 +41,7 @@ module Graph::Data
     # to the instance.
     #
     # This method is idempotent.
-    def add(name : String, provider : String, provider_id : String) : Bool
+    def add(name, provider, provider_id : String) : Bool
       raise ArgumentError.new("empty name") if name.empty?
       raise ArgumentError.new("empty provider") if provider.empty?
       raise ArgumentError.new("empty provider_id") if provider_id.empty?

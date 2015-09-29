@@ -23,7 +23,7 @@ module Graph::Data
   # be globally-unique.
   macro def_entity(name)
     class {{ name.id }}
-      def initialize(@id : UInt64, @name : String, @provider : String, @provider_id : String)
+      def initialize(@id : UInt64, @name, @provider, @provider_id : String)
         raise ArgumentError.new("zero ID") if @id == 0
         raise ArgumentError.new("empty name") if @name.empty?
         raise ArgumentError.new("empty provider") if @provider.empty?

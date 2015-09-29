@@ -34,7 +34,7 @@ module Graph::Data
       @reverse_adj = Hash(UInt64, BitSet).new()
     end
 
-    private def ids_hash(id1 : UInt64, id2 : UInt64) : UInt64
+    private def ids_hash(id1, id2 : UInt64) : UInt64
       id1 * 100_000 + id2
     end
 
@@ -42,7 +42,7 @@ module Graph::Data
     # downstream computations.
     #
     # This method is idempotent.
-    def add(origin : UInt64, dest : UInt64, reference : String) : Bool
+    def add(origin, dest : UInt64, reference : String) : Bool
       a = Association(U, V).new(origin, dest, reference)
       h = ids_hash(origin, dest)
 
@@ -130,7 +130,7 @@ module Graph::Data
 
     # related? answers `true` if an association between the given
     # elements is registered; `false` otherwise.
-    def related?(oid : UInt64, did : UInt64) : Bool
+    def related?(oid, did : UInt64) : Bool
       h = ids_hash(oid, did)
       @map.has_key?(h)
     end
@@ -167,6 +167,12 @@ module Graph::Data
     # of the given destination.
     def origins_for(did : UInt64) : BitSet | Nil
       @assocs.dests_for(did)
+    end
+
+    # related? answers `true` if an association between the given
+    # elements is registered; `false` otherwise.
+    def related?(oid, did : UInt64) : Bool
+      @assocs.related?(did, oid)
     end
 
     # size answers the number of registered associations.
