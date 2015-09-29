@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-require "./graph/*"
+require "./graph/**"
 
 module Graph
   # TODO Put your code here
