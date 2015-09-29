@@ -1,9 +1,1 @@
 language: crystal
-
-sudo: required
-before_install: |
-  curl -sL https://github.com/ysbaddaden/shards/releases/latest | \
-  egrep -o '/ysbaddaden/shards/releases/download/v[0-9\.]*/shards.*linux_x86_64.gz' | \
-  wget --base=http://github.com/ -i - -O - | \
-  sudo gunzip -c > /usr/local/bin/shards; \
-  chmod +x /usr/local/bin/shards

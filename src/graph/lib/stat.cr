@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-module Graph::Lib
+module Graph::Lib::Stat
   extend self
 
   # sensitivity answers how sensitive two variables are w.r.t. each
@@ -93,9 +93,7 @@ module Graph::Lib
 
     # Since the matrix is 2x2, effective degrees of freedom is
     # (2-1)*(2-1) = 1.  Index in the chi-square table is 0.
-    chi_sq_row = CHI_SQUARE[0]
-
-    idx = chi_sq_row.index { |el| el > chi_square }
+    idx = CHI_SQUARES[0].index { |el| el > chi_square }
     if idx
       # If the computed chi-square value is smaller than the very
       # first entry in the table, use the first entry in the p-value
