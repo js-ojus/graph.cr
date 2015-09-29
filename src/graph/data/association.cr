@@ -32,7 +32,7 @@ module Graph::Data
   # itself; it is only a view!
   struct InverseAssociation(U, V)
     # Creates an inverse association of the given association.
-    def initialize(@assoc : Association(U, V))
+    def initialize(@assoc : Association(V, U))
       # Intentionally left blank.
     end
 
