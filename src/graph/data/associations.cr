@@ -148,4 +148,38 @@ module Graph::Data
     end
   end
 
+  # InverseAssociations is an inverted, read-only view of a given set
+  # of underlying associations.
+  struct InverseAssociations(U, V)
+    include Enumerable(Association(U, V))
+
+    def initialize(@assocs : Associations(V, U))
+      # Intentionally left blank.
+    end
+
+    # dests_for answers a bitset with destinations of associations of
+    # the given origin.
+    def dests_for(oid : UInt64) : BitSet | Nil
+      @assocs.origins_for(oid)
+    end
+
+    # origins_for answers a bitset with destinations of associations
+    # of the given destination.
+    def origins_for(did : UInt64) : BitSet | Nil
+      @assocs.dests_for(did)
+    end
+
+    # size answers the number of registered associations.
+    def size : UInt64
+      @assocs.size
+    end
+
+    # each implements the `Enumerable` interface.
+    def each
+      @assocs.each do |el|
+        yield InverseAssociation(V, U).new(el)
+      end
+    end
+  end
+
 end
