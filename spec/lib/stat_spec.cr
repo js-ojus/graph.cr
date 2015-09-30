@@ -1,6 +1,6 @@
 require "../graph_spec"
 
-alias Stat = Graph::Lib::Stat
+alias Stat = Graph::GenStat
 
 describe "p-value calculation" do
   t = Stat.chi_square_2x2(c_11: 180_u64, c_12: 90_u64, c_21: 60_u64, c_22: 170_u64)

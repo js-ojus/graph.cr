@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-module Graph::Lib::Stat
+module Graph::GenStat
   extend self
 
   # sensitivity answers how sensitive two variables are w.r.t. each
