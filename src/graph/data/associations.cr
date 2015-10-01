@@ -119,13 +119,31 @@ module Graph::Data
       bsd.clone()
     end
 
-    # origins_for answers a bitset with destinations of associations
-    # of the given destination.
+    # origins_for answers a bitset with origins of associations of the
+    # given destination.
     def origins_for(did : UInt64) : BitSet | Nil
       bso = @reverse_adj[did]?
       return nil unless bso
 
       bso.clone()
+    end
+
+    # dests_size_for answers the number of destinations of
+    # associations of the given origin.
+    def dests_size_for(oid : UInt64) : UInt64 | Nil
+      bsd = @forward_adj[oid]?
+      return nil unless bsd
+
+      bsd.size
+    end
+
+    # origins_size_for answers the number of origins of associations
+    # of the given destination.
+    def origins_size_for(did : UInt64) : UInt64 | Nil
+      bso = @reverse_adj[did]?
+      return nil unless bso
+
+      bso.size
     end
 
     # related? answers `true` if an association between the given
@@ -167,6 +185,18 @@ module Graph::Data
     # of the given destination.
     def origins_for(did : UInt64) : BitSet | Nil
       @assocs.dests_for(did)
+    end
+
+    # dests_size_for answers the number of destinations of
+    # associations of the given origin.
+    def dests_size_for(oid : UInt64) : UInt64 | Nil
+      @assocs.dests_size_for(oid)
+    end
+
+    # origins_size_for answers the number of origins of associations
+    # of the given destination.
+    def origins_size_for(did : UInt64) : UInt64 | Nil
+      @assocs.origins_size_for(did)
     end
 
     # related? answers `true` if an association between the given

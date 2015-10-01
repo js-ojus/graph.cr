@@ -65,6 +65,17 @@ describe "association lists" do
   it "checks destinations" do
     as = Associations(Disease, Pathway).new()
     as.add(1_u64, 2_u64, "citation-1")
+    n = as.dests_size_for(1_u64)
+    if n
+      n.should eq(1_u64)
+    else
+      false
+    end
+  end
+
+  it "checks destinations" do
+    as = Associations(Disease, Pathway).new()
+    as.add(1_u64, 2_u64, "citation-1")
     as.add(1_u64, 3_u64, "citation-2")
     set = as.dests_for(1_u64)
     if set
