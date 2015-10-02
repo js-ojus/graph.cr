@@ -14,6 +14,10 @@
 
 require "./graph/**"
 
+require "sparsebitset"
+
+alias BitSet = SparseBitSet::BitSet
+
 module Graph
   # TODO Put your code here
 end

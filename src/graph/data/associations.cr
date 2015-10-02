@@ -14,8 +14,6 @@
 
 require "sparsebitset"
 
-alias BitSet = SparseBitSet::BitSet
-
 module Graph::Data
 
   # A collection of associations represents an in-memory two-or-higher-mode
