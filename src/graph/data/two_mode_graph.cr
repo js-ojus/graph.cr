@@ -12,8 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-require "sparsebitset"
-
 module Graph::Data
 
   # ClustCoefficients is a simple data holder for the normal, minimum

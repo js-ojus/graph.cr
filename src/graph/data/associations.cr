@@ -12,8 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-require "sparsebitset"
-
 module Graph::Data
 
   # A collection of associations represents an in-memory two-or-higher-mode
