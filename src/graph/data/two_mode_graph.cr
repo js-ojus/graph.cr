@@ -36,6 +36,17 @@ module Graph::Data
       # Intentionally left blank.
     end
 
+    # origin_degree answers the connectivity of the specified origin.
+    def origin_degree(oid : UInt64) : UInt64 | Nil
+      @assocs.dests_size_for(oid)
+    end
+
+    # dest_degree answers the connectivity of the specified
+    # destination.
+    def dest_degree(did : UInt64) : UInt64 | Nil
+      @assocs.origins_size_for(did)
+    end
+
     # clust_coefficients answers the normal, minimum and maximum
     # clustering coefficients for the given origin pair.
     def clust_coefficients(oid1, oid2 : UInt64) : ClustCoefficients | Nil
