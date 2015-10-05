@@ -32,7 +32,7 @@ module Graph::Lib
     # of `V`.  If the null hypothesis is true, the pair of `U` should
     # not exhibit a statistically significant difference in their
     # behaviour.
-    def test_null_hypothesis(uid1, uid2 : UInt64, vid : UInt64) : Tuple(Float64, Float64, Bool)
+    def test_null_hypothesis(uid1, uid2, vid : UInt64) : Tuple(Float64, Float64, Bool)
       # If at least one `U` element is not already known to be
       # directly related to the given `V` element, this test is
       # useless.
@@ -45,6 +45,18 @@ module Graph::Lib
       vid_ws  = @vw_assocs.dests_for(vid)
       return {0.0, 0.0, false} unless uid1_ws && uid2_ws && vid_ws
 
+      test_null_hypothesis(uid1_ws, uid2_ws, vid_ws)
+    end
+
+    # test_null_hypothesis computes a contingency table involving the
+    # given pair of elements of `U` with respect to the given element
+    # of `V`.  If the null hypothesis is true, the pair of `U` should
+    # not exhibit a statistically significant difference in their
+    # behaviour.
+    #
+    # For efficiency in inner loops, this method takes the adjacency
+    # lists as additional parameters.
+    def test_null_hypothesis(uid1_ws, uid2_ws, vid_ws : BitSet) : Tuple(Float64, Float64, Bool)
       # If the two `U` elements have no `W` associations in common,
       # this test cannot be carried out.
       tp = uid1_ws.intersection(uid2_ws)
